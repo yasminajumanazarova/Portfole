@@ -1,0 +1,31 @@
+'use client'
+
+import { useState } from 'react'
+import { ArrowDown, ArrowUpRight, Code2, MousePointer2, Sparkles } from 'lucide-react'
+
+export default function Page() {
+  const [score, setScore] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const [target, setTarget] = useState({ left: 52, top: 42 })
+
+  function catchStar() {
+    setScore((value) => value + 1)
+    setTarget({ left: 8 + Math.random() * 78, top: 12 + Math.random() * 70 })
+  }
+
+  return (
+    <main>
+      <nav className="nav"><a className="brand" href="#home">Y<span>.</span></a><div className="nav-links"><a href="#about">Men haqimda</a><a href="#skills">Ko‘nikmalar</a><a href="#game">Mini o‘yin</a></div><a className="nav-cta" href="mailto:yasmina@example.com">Bog‘lanish <ArrowUpRight size={15}/></a></nav>
+      <section className="hero" id="home">
+        <div className="hero-grid" aria-hidden="true"/><div className="orb orb-one" aria-hidden="true"/><div className="orb orb-two" aria-hidden="true"/>
+        <div className="hero-content"><div className="availability"><span/> Yangi g‘oyalarga doim tayyorman</div><p className="eyebrow">SALOM, MEN YASMINAMAN</p><h1>Kelajakni<br/> <span className="gradient-text">kod bilan</span> yarataman<span className="dot">.</span></h1><p className="hero-copy">Men Jumanazarova Yasmina — web dasturlash olamida o‘z yo‘lini topayotgan ijodkor dasturchiman.</p><div className="hero-actions"><a className="button-primary" href="#about">Men haqimda <ArrowDown size={16}/></a><a className="button-ghost" href="#skills">Nimalarni bilaman <ArrowUpRight size={16}/></a></div></div>
+        <div className="hero-side-note"><span>01 / 04</span><span className="side-line"/><span>PORTFOLIO 2026</span></div><a href="#about" className="scroll-cue"><span className="scroll-dot"/> PASTGA AYLANING</a><div className="hero-code" aria-hidden="true"><span>&lt;hello /&gt;</span><Code2 size={16}/></div>
+      </section>
+      <section className="about section" id="about"><div className="section-label"><span>01</span> / MEN HAQIMDA</div><div className="about-layout"><div><h2>Har bir katta<br/>sayt — kichik<br/><span className="gradient-text">bir g‘oyadan.</span></h2><div className="about-stamp"><Sparkles size={17}/><span>QIZIQUVCHANLIK<br/>MOTIVATSIYAM</span></div></div><div className="about-text"><p className="lead">Salom! Men <strong>Jumanazarova Yasmina</strong>, Xorazm viloyati, Bog‘ot tumanida tug‘ilganman.</p><p>2009-yil 23-oktyabrda dunyoga kelganman. Ikki yildan beri IT sohasida o‘qib, web dasturlash sirlarini o‘rganib kelaman. HTML, CSS va JavaScript bilan chiroyli hamda qulay saytlar yaratishni yaxshi ko‘raman.</p><p>Kelajakda ham IT sohasida faoliyat yuritib, o‘z g‘oyalarimni haqiqiy loyihalarga aylantirishni istayman.</p><div className="facts"><div><b>02<span>+</span></b><small>YIL TAJRIBA</small></div><div><b>03</b><small>ASOSIY TEXNOLOGIYA</small></div><div><b>∞</b><small>YANGI G‘OYALAR</small></div></div></div></div></section>
+      <section className="skills section" id="skills"><div className="section-label"><span>02</span> / MENING KO‘NIKMALARIM</div><div className="skills-head"><h2>O‘rganaman.<br/><span className="gradient-text">Yarataman.</span></h2><p>Har bir yangi qator kod — yangi imkoniyat.</p></div><div className="skill-grid"><article className="skill-card"><span className="skill-index">01</span><div className="tech-mark html-mark">5</div><h3>HTML</h3><p>Semantik, tartibli va mazmunli sahifalar tuzaman.</p><div className="skill-meter"><span style={{width:'88%'}}/></div><span className="skill-level">YAXSHI BILAMAN <b>88%</b></span></article><article className="skill-card featured"><span className="skill-index">02</span><div className="tech-mark css-mark">✳</div><h3>CSS</h3><p>Responsive dizaynlar va jonli animatsiyalar yarataman.</p><div className="skill-meter"><span style={{width:'82%'}}/></div><span className="skill-level">YAXSHI BILAMAN <b>82%</b></span></article><article className="skill-card"><span className="skill-index">03</span><div className="tech-mark js-mark">JS</div><h3>JavaScript</h3><p>Saytlarni interaktiv va foydalanuvchiga qulay qilaman.</p><div className="skill-meter"><span style={{width:'72%'}}/></div><span className="skill-level">O‘RGANMOQDAMAN <b>72%</b></span></article></div></section>
+      <section className="quote-band"><span className="quote-mark">“</span><p>Bugun o‘rgangan narsam — ertangi <span>imkoniyatim.</span></p><span className="quote-caption">— YASMINA JUMANAZAROVA</span><div className="quote-orbit"/></section>
+      <section className="game-section section" id="game"><div className="section-label"><span>03</span> / KICHIK TANAFFUS</div><div className="game-heading"><div><p className="eyebrow">ZERIKISHGA QARSHI RETSEPT</p><h2>Yulduzni <span className="gradient-text">ushla!</span></h2><p>Yulduzchani iloji boricha ko‘p marta bosib, ochko to‘pla.</p></div><div className="score"><span>HISOB</span><b>{String(score).padStart(2,'0')}</b></div></div><div className="game-board"><div className="game-stars" aria-hidden="true">✦　·　✧　　·　✦　　✧　·　✦</div>{playing ? <button className="target" style={{left:`${target.left}%`,top:`${target.top}%`}} onClick={catchStar} aria-label="Yulduzni ushla">✦</button> : <div className="game-start"><div className="start-icon"><MousePointer2 size={22}/></div><h3>Tayyormisan?</h3><p>Har bosganingda yulduz boshqa joyga sakraydi!</p><button className="button-primary" onClick={()=>{setScore(0);setPlaying(true)}}>O‘yinni boshlash <ArrowUpRight size={16}/></button></div>}<span className="board-tag">YASMINA’S MINI GAME</span></div></section>
+      <footer className="footer"><div className="footer-top"><div><a className="brand footer-brand" href="#home">Y<span>.</span></a><p>Kod bilan kelajak sari.</p></div><div className="footer-contact"><span>YANGI LOYIHA BORMI?</span><a href="mailto:yasmina@example.com">Keling, gaplashamiz <ArrowUpRight size={17}/></a></div></div><div className="footer-bottom"><span>© 2026 JUMANAZAROVA YASMINA</span><span>MEHR BILAN YARATILDI <span className="heart">♥</span></span><div className="socials"><a href="mailto:yasmina@example.com" aria-label="Email"><ArrowUpRight size={15}/></a><a href="#home" aria-label="Portfolio"><Code2 size={15}/></a><a href="#home" aria-label="GitHub"><Code2 size={15}/></a></div></div></footer>
+    </main>
+  )
+}
